@@ -10,7 +10,7 @@ gpio.open(7, "output", function (err) { //#B
 });
 
 interval = setInterval(function () { //#C
-  var value = (led.readSync() + 1) % 2; //#D
+  var value = (gpio.read(7) + 1) % 2; //#D
   gpio.write(7, value, function(err) { //#E
     if(err) console.log('error during timeout write:', err);
     console.log("Changed LED state to: " + value);
