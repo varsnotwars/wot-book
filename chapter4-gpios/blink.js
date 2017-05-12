@@ -1,9 +1,9 @@
 var gpio = require('pi-gpio'); //#A
 var interval;
 
-gpio.open(4, "output", function (err) { //#B
+gpio.open(7, "output", function (err) { //#B
   if(err) console.log('error during initial open:', err);
-  gpio.write(4, 1, function(err) {
+  gpio.write(7, 1, function(err) {
     if(err) console.log('error during initial write:', err);
     console.log()
   });
@@ -11,7 +11,7 @@ gpio.open(4, "output", function (err) { //#B
 
 interval = setInterval(function () { //#C
   var value = (led.readSync() + 1) % 2; //#D
-  gpio.write(4, value, function(err) { //#E
+  gpio.write(7, value, function(err) { //#E
     if(err) console.log('error during timeout write:', err);
     console.log("Changed LED state to: " + value);
   });
@@ -19,8 +19,8 @@ interval = setInterval(function () { //#C
 
 process.on('SIGINT', function () { //#F
   clearInterval(interval);
-  gpio.write(4, 0); //#G
-  gpio.close(4);
+  gpio.write(7, 0); //#G
+  gpio.close(7);
   console.log('Bye, bye!');
   process.exit();
 });
