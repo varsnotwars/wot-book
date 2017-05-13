@@ -5,15 +5,16 @@ var led = new Gpio(4, 'out');
 sensor.watch(function (err, value) { //#B
   if (err) exit(err);
   if(value) {
+    // body detected    
     var ledOnState = 1;
-    console.log('body detected');
     led.write(ledOnState, function() {
-      console.log('LED state: ' + ledOnState);
+    // led turned on
     });
   } else {
+    // body not detected
     var ledOffState = 0;
     led.write(ledOffState, function() {
-      console.log('LED state: ' + ledOffState);
+      // led turned off
     });
   }
 });
